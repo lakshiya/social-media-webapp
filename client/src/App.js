@@ -1,6 +1,8 @@
 import { Container, Typography, AppBar, Grow, Grid} from '@material-ui/core';
 import socio from './images/memories.png'
-import React , {useEffect} from 'react';
+
+//  useState, useEffect useDispatch etc. are all called as Hooks
+import React , {useEffect, useState} from 'react';
 // import Post from './components/Posts/Post/Post.js'
 import Form from './components/Form/Form.js'
 import Posts from './components/Posts/Posts';
@@ -9,10 +11,12 @@ import { useDispatch } from 'react-redux';
 import {getPosts} from './actions/posts';
 
 const App = () => {
-  const classes = useStyles();
+  
+  const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
+  const classes = useStyles();
 
-  useEffect( () => {
+  useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
 
@@ -26,16 +30,16 @@ const App = () => {
         <Container>
           <Grid container justifyContent='space-between' alignItems='stretch' spacing={3}>
             <Grid item xs={12} sm={7}>
-              <Posts />
+              <Posts setCurrentId={setCurrentId} />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form />
+              <Form currentId={currentId} />
             </Grid>
           </Grid>
         </Container>
       </Grow>
     </Container>
   );
-}
+};
 
 export default App;
