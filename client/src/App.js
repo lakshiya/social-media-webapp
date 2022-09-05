@@ -10,6 +10,8 @@ import useStyles from './styles.js';
 import { useDispatch } from 'react-redux';
 import {getPosts} from './actions/posts';
 
+// Since we use Matrial ui, this application is out of the box, responsive to Mobile devices
+
 const App = () => {
   
   const [currentId, setCurrentId] = useState(null);
@@ -28,7 +30,7 @@ const App = () => {
       </AppBar>
       <Grow in>
         <Container>
-          <Grid container justifyContent='space-between' alignItems='stretch' spacing={3}>
+          <Grid className='mainContainer' container justifyContent='space-between' alignItems='stretch' spacing={3}>
             <Grid item xs={12} sm={7}>
               <Posts setCurrentId={setCurrentId} />
             </Grid>
